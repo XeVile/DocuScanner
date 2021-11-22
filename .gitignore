@@ -1,4 +1,7 @@
 *.ipynb
-*.md
+
+__pycache__/
+
+testBed/
 
 .[A-Z]
