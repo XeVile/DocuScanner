@@ -1,5 +1,4 @@
-# Import
-from typing import final
+# Import    
 from imutils.convenience import resize
 from pov_transform import fp_transform
 from skimage.filters import threshold_local
@@ -9,7 +8,7 @@ import cv2 as cv
 import imutils
 
 # FOR COMPATABILITY
-# import os
+#import os
 
 # For parsing arguments
 ap = argparse.ArgumentParser()
