@@ -3,6 +3,37 @@ import numpy as np
 import cv2 as cv
 
 
+def im_divide(im, im_shape, M , N):
+    x1 = 0
+    y1 = 0
+    h, w = im_shape[:2]
+
+    if N == None:
+        N = M
+
+    for y in range(0, h, M):
+        for x in range(0, w, N):
+            if (h - y) < M or (w - x) < N:
+                break
+
+            y1 = y + M
+            x1 = x + N
+
+            # Check whether the patch size is greater than image size
+            if (x1 >= w or y1 >= h):
+                y1 = h - 1
+                x1 = w - 1
+                tiles = im[y:y + M, x:x + M]
+                cv.rectangle(im, (x, y), (x1, y1), (0, 255, 0), 1)
+            elif y1 >= h:
+                y1 = h - 1
+                tiles = im[y:y + M, x:x + M]
+                cv.rectangle(im, (x, y), (x1, y1), (0, 255, 0), 1)
+            elif x1 >= w:
+                x1 = w - 1
+                tiles = im[y:y + M, x:x + M]
+                cv.rectangle(im, (x, y), (x1, y1), (0, 255, 0), 1)
+    return im
 
 def init_border(zone):
     # Init a list of coordinates that wrap around the image border corners
